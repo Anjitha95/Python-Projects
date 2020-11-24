@@ -20,18 +20,22 @@ def process(guessed_number):
     if guessed_number == guess_no:
         title_guess.config(text='Guesses Used:-' + str(guess_left))
         game_status.config(text='You have won!!', fg='green')
+        text_field.delete(0, END)
     elif guessed_number > guess_no:
         guess_left += 1
         title_guess.config(text='Guesses Used:-' + str(guess_left))
         game_status.config(text='Number you guessed is tooo HIGH', fg='red')
+        text_field.delete(0, END)
     else:
         guess_left += 1
         title_guess.config(text='Guesses Used:-' + str(guess_left))
         game_status.config(text='Number you guessed is tooo LOW', fg='red')
+        text_field.delete(0, END)
     if guess_left == 6:
         if guessed_number != guess_no:
             title_guess.config(text='Guesses Used:- 6')
             game_status.config(text='Maximum Guess Reached. You Lost!! The Number was:' + str(guess_no), fg='blue')
+            text_field.delete(0, END)
             btn_submit["state"] = DISABLED
 
 
@@ -43,6 +47,7 @@ def reset_btn():
     title_guess.config(text='Guesses Used:-')
     game_status.config(text='Status', fg='blue')
     btn_submit["state"] = NORMAL
+    text_field.delete(0, END)
 
 
 guess_left = 0
